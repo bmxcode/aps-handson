@@ -8,12 +8,14 @@ const decorateSyntaxBlock = (el) => {
   });
 };
 
-const els = document.querySelectorAll(".syntax");
-if (els.length) {
-  // load the prism assets
-  loadScript("/blocks/syntax/prism.js");
-  loadCSS("/blocks/syntax/prism.css");
+export default function decorate(block) {
+  const els = document.querySelectorAll(".syntax");
+  if (els.length) {
+    // load the prism assets
+    loadScript("/blocks/syntax/prism.js");
+    loadCSS("/blocks/syntax/prism.css");
 
-  // process each syntax block
-  els.forEach(decorateSyntaxBlock);
+    // process each syntax block
+    els.forEach(decorateSyntaxBlock);
+  }
 }
