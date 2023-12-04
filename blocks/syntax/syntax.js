@@ -1,19 +1,20 @@
 import { loadCSS, loadScript } from "../../scripts/aem.js";
 
-const decorateSyntaxBlock = (el) => {
-  el.classList.forEach((className) => {
-    if (className !== "syntax" && className !== "block") {
-      el.getElementsByTagName("code")[0].classList.add(`language-${className}`);
-    }
-  });
+const decorateSyntaxLanguage = (block) => {
+  // classes are applied as "<blockName> <extraClass (|extraClass)> block"
+  const syntaxLang = block.classList[1];
+  if (syntaxLang !== "block") {
+    block
+      .getElementsByTagName("code")[0]
+      .classList.add(`language-${syntaxLang}`);
+  }
 };
 
-const els = document.querySelectorAll(".syntax");
-if (els.length) {
+export default function decorate(block) {
   // load the prism assets
   loadScript("/blocks/syntax/prism.js");
   loadCSS("/blocks/syntax/prism.css");
 
   // process each syntax block
-  els.forEach(decorateSyntaxBlock);
+  decorateSyntaxLanguage(block);
 }
