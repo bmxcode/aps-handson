@@ -58,7 +58,6 @@
 
 .pagination .column p:last-of-type span {
   display: flex;
-  margin-left: 8px;
 }
 
 .pagination .column h3 {
